@@ -1,16 +1,11 @@
-﻿---
-title: Neural Style Transfer
-emoji: 🎨
-colorFrom: blue
-colorTo: purple
-sdk: docker
-app_port: 7860
----
-
-# Neural Style Transfer (AdaIN)
+﻿# Neural Style Transfer (AdaIN)
 
 An end-to-end deep learning web application for real-time **Arbitrary Neural Style Transfer** powered by **Adaptive Instance Normalization (AdaIN)**, PyTorch, and Flask. The system combines the semantic content of one image with the artistic color palette, texture, and brushstrokes of another at adjustable style blending strengths.
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge)](https://neural-style-transfer-mfpl.onrender.com)
 
+# 🎨 Neural Style Transfer
+
+[🚀 Live Demo](https://neural-style-transfer-mfpl.onrender.com)
 ---
 
 ## Overview
