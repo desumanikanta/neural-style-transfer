@@ -125,35 +125,37 @@ git push -u origin main
 
 ---
 
-## Hugging Face Spaces Deployment
+## 🚀 Deployment
 
-Deploy this application directly to Hugging Face Spaces using the official Docker SDK:
+### Render Deployment
 
-### Step 1: Create a New Space
-1. Log in to [Hugging Face](https://huggingface.co/).
-2. Navigate to [Hugging Face Spaces](https://huggingface.co/spaces) and click **"Create new Space"**.
-3. Set your Space details:
-   - **Space Name**: e.g., `neural-style-transfer`
-   - **License**: `mit` or `apache-2.0`
-   - **Select the Space SDK**: Choose **Docker** -> **Blank**.
-   - **Space Hardware**: Choose **CPU basic (free)** or any GPU tier.
+The application is containerized using Docker and deployed as a production Flask application on Render.
 
-### Step 2: Push Repository to Hugging Face
-You can deploy either by syncing directly with GitHub or by pushing via Git:
+**Live Application:**
 
-```bash
-# Add Hugging Face Space as a remote
-git remote add space https://huggingface.co/spaces/YOUR_HF_USERNAME/YOUR_SPACE_NAME
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Render-46E3B7?style=for-the-badge)](https://neural-style-transfer-mfpl.onrender.com/)
 
-# Push to Hugging Face
-git push --force space main
-```
+🔗 https://neural-style-transfer-mfpl.onrender.com/
 
-### Step 3: Automatic Build & Launch
-- Hugging Face will detect the `Dockerfile`, install dependencies, copy model checkpoints, and launch Gunicorn on port `7860`.
-- The live application will be available at:
-  `https://huggingface.co/spaces/YOUR_HF_USERNAME/YOUR_SPACE_NAME`
+### Deployment Architecture
 
+```text
+GitHub Repository
+       │
+       ▼
+     Render
+       │
+       ▼
+ Docker Container
+       │
+       ├── Flask Application
+       ├── PyTorch
+       ├── VGG-19 Encoder
+       ├── AdaIN
+       └── Trained Decoder
+       │
+       ▼
+   Live Web Application
 ---
 
 ## Limitations & Notes
