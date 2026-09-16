@@ -1,0 +1,44 @@
+﻿# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment secrets
+.env
+.env.local
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary generated test outputs
+test_out_*.jpg
+corrupt_test.jpg
+
+# Temporary user uploads (keep directory via .gitkeep and original defaults)
+static/uploads/*
+!static/uploads/.gitkeep
+!static/uploads/brad_pitt.jpg
+!static/uploads/la_muse.jpg
+!static/uploads/mondrian_cropped.jpg
+!static/uploads/picasso_seated_nude_hr.jpg
+!static/uploads/stylized_brad_pitt.jpg
+
+# Training logs / large intermediate checkpoints (keep final decoder)
+experiment/*/sample_iter_*.png
+experiment/*/output_*.png
+experiment/*/optimizer_*.pth
+experiment/*/args.txt
+
+# Ensure essential pretrained models are NEVER ignored
+!vgg_normalised.pth
+!experiment/final_exp/decoder_final.pth
