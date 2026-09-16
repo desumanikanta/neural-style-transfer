@@ -110,12 +110,12 @@ def style_transfer(content_image, style_image, encoder_model, decoder_model, alp
     """Execute AdaIN style transfer pipeline."""
 
     content_transform = transforms.Compose([
-        transforms.Resize(512),
+        transforms.Resize(256,256),
         transforms.ToTensor()
     ])
 
     style_transform = transforms.Compose([
-        transforms.Resize(512),
+        transforms.Resize(256,256),
         transforms.ToTensor()
     ])
 
