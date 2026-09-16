@@ -108,6 +108,7 @@ def validate_image_file(file_path):
 
 def style_transfer(content_image, style_image, encoder_model, decoder_model, alpha_val, compute_device):
     """Execute AdaIN style transfer pipeline."""
+
     content_transform = transforms.Compose([
         transforms.Resize(512),
         transforms.ToTensor()
@@ -121,15 +122,36 @@ def style_transfer(content_image, style_image, encoder_model, decoder_model, alp
     content_tensor = content_transform(content_image).unsqueeze(0).to(compute_device)
     style_tensor = style_transform(style_image).unsqueeze(0).to(compute_device)
 
+    logger.info(
+        f"Input tensors created: content={tuple(content_tensor.shape)}, "
+        f"style={tuple(style_tensor.shape)}"
+    )
+
     with torch.no_grad():
+
+        logger.info("Starting content VGG encoding...")
         content_feats = encoder_model(content_tensor, is_test=True)
+        logger.info(f"Content VGG encoding completed: {tuple(content_feats.shape)}")
+
+        logger.info("Starting style VGG encoding...")
         style_feats = encoder_model(style_tensor, is_test=True)
+        logger.info(f"Style VGG encoding completed: {tuple(style_feats.shape)}")
 
-        stylized_feats = adaptive_instance_normalization(content_feats, style_feats)
-        # Alpha blending between content features and stylized features
-        stylized_feats = alpha_val * stylized_feats + (1.0 - alpha_val) * content_feats
+        logger.info("Starting AdaIN...")
+        stylized_feats = adaptive_instance_normalization(
+            content_feats,
+            style_feats
+        )
+        logger.info("AdaIN completed")
 
+        stylized_feats = (
+            alpha_val * stylized_feats
+            + (1.0 - alpha_val) * content_feats
+        )
+
+        logger.info("Starting decoder...")
         stylized_image = decoder_model(stylized_feats)
+        logger.info("Decoder completed")
 
     return stylized_image
 

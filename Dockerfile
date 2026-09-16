@@ -37,4 +37,4 @@ USER user
 EXPOSE 7860
 
 # Launch application via Gunicorn production WSGI server
-CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--workers", "1", "--threads", "4", "--timeout", "120", "app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--workers", "1", "--threads", "1", "--timeout", "300", "app:app"]
